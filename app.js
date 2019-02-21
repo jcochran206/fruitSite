@@ -38,6 +38,7 @@ const person = new Person ({
 
 //person.save();
 
+// addition of new fruits
 const kiwi = new Fruit ({
   name: "kiwi",
   rating: 10,
@@ -55,11 +56,24 @@ const banana = new Fruit ({
   rating: 8,
   review: "solid fruit"
 });
+//command inserts data into database 
+// Fruit.insertMany([kiwi, orange, banana], function(err){
+//   if(err) {
+//     console.log(error);
+//   }else {
+//     console.log("SUCCESS");
+//   }
+// });
 
-Fruit.insertMany([kiwi, orange, banana], function(err){
-  if(err) {
-    console.log(error);
-  }else {
-    console.log("SUCCESS");
+//find or query database for data
+Fruit.find(function(err, fruits){
+  if (err){
+    console.log(err);
+  } else {
+    mongoose.connection.close();
+
+    fruits.forEach(function(fruit){
+      console.log(fruit.name);
+    });
   }
 });
