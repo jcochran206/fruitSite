@@ -9,8 +9,15 @@ const url = 'mongodb://localhost:27017';
 
 //database name
 const fruitSchema = new mongoose.Schema ({
-  name: String,
-  rating: Number,
+  name: {
+    type: String,
+    required: [true, 'needed name']
+  },
+  rating: {
+    type: Number,
+    min: 1,
+    max: 10
+  },
   review: String
 });
 
@@ -39,24 +46,25 @@ const person = new Person ({
 //person.save();
 
 // addition of new fruits
-const kiwi = new Fruit ({
-  name: "kiwi",
-  rating: 10,
-  review: "best fruit"
-});
+// const kiwi = new Fruit ({
+//   name: "kiwi",
+//   rating: 10,
+//   review: "best fruit"
+// });
+//
+// const orange = new Fruit ({
+//   name: "orange",
+//   rating: 9,
+//   review: "solid like the color"
+// });
+//
+// const banana = new Fruit ({
+//   name: "Apple",
+//   rating: 8,
+//   review: "solid fruit"
+// });
 
-const orange = new Fruit ({
-  name: "orange",
-  rating: 9,
-  review: "solid like the color"
-});
-
-const banana = new Fruit ({
-  name: "Apple",
-  rating: 8,
-  review: "solid fruit"
-});
-//command inserts data into database 
+//command inserts data into database
 // Fruit.insertMany([kiwi, orange, banana], function(err){
 //   if(err) {
 //     console.log(error);
