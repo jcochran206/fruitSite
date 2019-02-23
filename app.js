@@ -23,27 +23,37 @@ const fruitSchema = new mongoose.Schema ({
 
 const Fruit = mongoose.model("Fruit", fruitSchema);
 
-const fruit = new Fruit ({
-  name: "Apple",
-  rating: 8,
-  review: "solid fruit"
+const mango = new Fruit ({
+  name: "Mango",
+  rating: 9,
+  review: "Great fruit"
 });
 
-//fruit.save();
+mango.save();
 
 const personSchema = new mongoose.Schema ({
   name: "String",
-  age: "Number"
+  age: "Number",
+  favoriteFruit: fruitSchema
 });
 
 const Person = mongoose.model("Person", personSchema);
 
 const person = new Person ({
-  name: "Jonathan",
-  age: 37
+  name: "Jeff",
+  age: 36,
+  favoriteFruit: "mango"
 });
 
-//person.save();
+Person.updateOne({name: "Jonathan"}, {favoriteFruit: "mango"}, function(err){
+  if(err){
+    console.log(err);
+  }else{
+    console.log("successfully updated one");
+  }
+})
+
+person.save();
 
 // addition of new fruits
 // const kiwi = new Fruit ({
